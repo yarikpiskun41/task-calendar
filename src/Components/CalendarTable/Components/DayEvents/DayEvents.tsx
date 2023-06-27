@@ -79,7 +79,6 @@ const DayEvents = ({
             &&
             event.tags.find((tag) => (filteredTag as TaskTagType) && JSON.stringify(tag) === JSON.stringify(filteredTag))
         })];
-        console.log(filteredTag, eventSearchString && eventsResult)
         return renderEvents(eventsResult)
       }
 

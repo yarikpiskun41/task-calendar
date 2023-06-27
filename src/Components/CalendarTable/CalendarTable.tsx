@@ -129,24 +129,39 @@ const CalendarTable = ({month, year, tags, filteredTag}: CalendarTableProps) => 
   };
 
   const handleDragOver = (event: React.DragEvent, day: number, destinationIndex: number) => {
-    event.preventDefault();
-    event.stopPropagation();
-    event.dataTransfer.dropEffect = 'move';
+    try {
+      event.preventDefault();
+      event.stopPropagation();
+      event.dataTransfer.dropEffect = 'move';
+    } catch (e) {
+      console.log(e)
+    }
+
+
   };
 
   const handleDrop = (event: React.DragEvent, day: number, destinationIndex: number) => {
-    event.preventDefault();
-    event.stopPropagation();
-    const sourceDay = parseInt(event.dataTransfer.getData('sourceDay'));
-    const sourceIndex = parseInt(event.dataTransfer.getData('sourceIndex'));
+    try {
+      event.preventDefault();
+      event.stopPropagation();
+      const sourceDay = parseInt(event.dataTransfer.getData('sourceDay'));
+      const sourceIndex = parseInt(event.dataTransfer.getData('sourceIndex'));
 
-    if (day !== sourceDay || destinationIndex !== sourceIndex) {
-      const updatedEvents = {...events};
-      const sourceDayEvents = updatedEvents[year][months[month]][sourceDay - 1];
-      const destinationDayEvents = updatedEvents[year][months[month]][day - 1];
-      const [draggedEvent] = sourceDayEvents.splice(sourceIndex, 1);
-      destinationDayEvents.splice(destinationIndex, 0, draggedEvent);
-      setAndSaveEvents(updatedEvents);
+      if (day !== sourceDay || destinationIndex !== sourceIndex) {
+        const updatedEvents = {...events};
+
+        const sourceDayEvents = updatedEvents[year][months[month]][sourceDay - 1];
+        const [draggedEvent] = sourceDayEvents.splice(sourceIndex, 1);
+
+        const destinationDayEvents = [...updatedEvents[year][months[month]][day - 1]];
+        destinationDayEvents.splice(destinationIndex, 0, draggedEvent);
+
+        updatedEvents[year][months[month]][day - 1] = destinationDayEvents;
+
+        setAndSaveEvents(updatedEvents);
+      }
+    } catch (e) {
+      console.log(e)
     }
   };
 
@@ -185,14 +200,14 @@ const CalendarTable = ({month, year, tags, filteredTag}: CalendarTableProps) => 
   const exportEvents = () => {
     const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(events));
     const fakeLink = document.createElement('a');
-    fakeLink.setAttribute("href",     dataStr);
+    fakeLink.setAttribute("href", dataStr);
     fakeLink.setAttribute("download", "custom-events" + ".json");
     fakeLink.click();
     fakeLink.remove();
   }
 
   const exportAsImage = async (table: HTMLTableElement | null, imageFileName: string) => {
-    if(table) {
+    if (table) {
       const canvas = await html2canvas(table);
       const image = canvas.toDataURL("image/png", 1.0);
       const fakeLink = window.document.createElement("a");
@@ -204,9 +219,6 @@ const CalendarTable = ({month, year, tags, filteredTag}: CalendarTableProps) => 
   };
 
 
-
-
-
   return (
     <>
       <div className={"calendar-table-controls"}>
@@ -216,7 +228,8 @@ const CalendarTable = ({month, year, tags, filteredTag}: CalendarTableProps) => 
         <button onClick={exportEvents} className={"calendar-table-controls-button --download"}>
           <Download/>
         </button>
-        <button onClick={()=>exportAsImage(eventTable.current, "your-calendar")} className={"calendar-table-controls-button --download-photo"}>
+        <button onClick={() => exportAsImage(eventTable.current, "your-calendar")}
+                className={"calendar-table-controls-button --download-photo"}>
           <Photo/>
         </button>
         {loading && <Spinner/>}
