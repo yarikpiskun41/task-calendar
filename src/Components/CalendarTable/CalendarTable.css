@@ -1,0 +1,163 @@
+.calendar-table {
+  width: 100%;
+}
+
+.calendar-table, .calendar-table-day-name, .calendar-table-day-number-cell {
+  text-align: center;
+  vertical-align: center;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 1px solid #797070;
+}
+
+.calendar-table-day-number {
+  margin-bottom: 1rem;
+}
+
+.calendar-table-day-number-cell {
+
+  vertical-align: top;
+  position: relative;
+  height: 5rem;
+  overflow: auto;
+  padding: 0;
+}
+
+.calendar-table-day-number {
+  text-align: left;
+  padding-left: 0.5rem;
+  padding-top: 0.5rem;
+
+}
+
+.calendar-table-day-name {
+  width: calc(100% / 7);
+}
+
+.calendar-table-day-number-cell.--not-now-month {
+  background-color: #f2f2f2;
+  color: #625c5c;
+}
+
+.add-event-button {
+  scale: 0;
+  background-color: #fbc312;
+  color: #fff;
+  position: absolute;
+  padding: 0;
+  border: none;
+  top: 0.5rem;
+  right: 0.5rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  transition: scale 0.2s ease-in-out;
+}
+
+.calendar-table-day-number-cell:hover:not(.--not-now-month) .add-event-button {
+  scale: 1;
+}
+
+.calendar-table-event {
+  position: relative;
+  padding: 0.25rem;
+  margin-bottom: 0.25rem;
+  background-color: #d7d3d3;
+}
+
+.calendar-table-controls-button {
+  background-color: #fbc312;
+  color: #fff;
+  border: none;
+  padding: 0.35rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendar-table-controls-button.--download {
+  background-color: #0d88a8;
+}
+
+.calendar-table-controls-button.--download-photo {
+  background-color: #0da80d;
+}
+
+.calendar-table-event.--holiday {
+  background-color: #78d3e3;
+}
+
+.calendar-table-events {
+  padding: 1rem 0 0;
+  height: 6rem;
+  font-size: 0.75rem;
+  overflow: auto;
+}
+
+.calendar-table-events::-webkit-scrollbar {
+  width: 15px;
+}
+
+.calendar-table-event-tags {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.calendar-table-event-name {
+  text-align: left;
+}
+
+.calendar-table-event-tag {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+}
+
+.calendar-table-event-controls {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  display: flex;
+  align-items: center;
+}
+
+.calendar-table-controls {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+  align-items: center;
+}
+
+.calendar-table-controls-search {
+  font-size: 1.25rem;
+  padding: 0.25rem;
+  border: none;
+  border-bottom: 2px solid #fbc312;
+  outline: none;
+}
+
+.calendar-table-event-control {
+  padding: 0;
+  width: 1rem;
+  height: 1rem;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.calendar-table-event-control.--delete {
+  color: #a80d0d;
+}
+
+.calendar-table-event-control.--edit {
+  color: #0d88a8;
+}

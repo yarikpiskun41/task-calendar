@@ -1,0 +1,29 @@
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  position: sticky;
+  top: 0;
+  background-color: #FBDF5A;
+  border-radius: 0 0 10px 10px;
+  z-index: 5;
+}
+
+main {
+  flex-grow: 1;
+  display: flex;
+  height: 100%;
+}
+
+.calendar-table-holder {
+  width: 100%;
+  padding: 20px;
+  min-height: 100%;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  overflow: auto;
+}
