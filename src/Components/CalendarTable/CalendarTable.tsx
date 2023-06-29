@@ -54,7 +54,7 @@ const CalendarTable = ({month, year, tags, filteredTag}: CalendarTableProps) => 
 
   }
 
-  const getHolidays = async (year: number, month: number, countryCode: string) => {
+  const getHolidays = async (year: number, countryCode: string) => {
     try {
       const response = await fetch(`https://date.nager.at/api/v3/PublicHolidays/${year}/${countryCode}`);
       const data: {
@@ -84,10 +84,10 @@ const CalendarTable = ({month, year, tags, filteredTag}: CalendarTableProps) => 
     }
   }
 
-  const getHolidaysForMonthForAllCountries = async (year: number, month: number) => {
+  const getHolidaysForMonthForAllCountries = async (year: number) => {
     const holidays: { day: number, month: number, year: number, name: string, countryCode: string }[] = [];
     for (const countryCode of countriesCodes) {
-      const countryHolidays = await getHolidays(year, month, countryCode);
+      const countryHolidays = await getHolidays(year, countryCode);
       holidays.push(...countryHolidays);
     }
     return holidays;
@@ -104,13 +104,13 @@ const CalendarTable = ({month, year, tags, filteredTag}: CalendarTableProps) => 
   useEffect(() => {
     if (countriesCodes.length > 0) {
       setLoading(true)
-      getHolidaysForMonthForAllCountries(year, month).then((holidays) => {
+      getHolidaysForMonthForAllCountries(year).then((holidays) => {
         setLoading(false);
         setGlobalHolidays(holidays)
       });
     }
 
-  }, [month, year, countriesCodes])
+  }, [year, countriesCodes])
 
   const openEventModal = (day: number, month: eventMonthsNumber, year: number) => {
     setSelectedDate({day, month, year})
