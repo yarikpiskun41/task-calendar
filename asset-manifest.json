@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/task-calendar/static/css/main.c194fff4.css",
-    "main.js": "/task-calendar/static/js/main.66e01c0b.js",
+    "main.js": "/task-calendar/static/js/main.38f00d1c.js",
     "static/js/787.391fed79.chunk.js": "/task-calendar/static/js/787.391fed79.chunk.js",
     "index.html": "/task-calendar/index.html",
     "main.c194fff4.css.map": "/task-calendar/static/css/main.c194fff4.css.map",
-    "main.66e01c0b.js.map": "/task-calendar/static/js/main.66e01c0b.js.map",
+    "main.38f00d1c.js.map": "/task-calendar/static/js/main.38f00d1c.js.map",
     "787.391fed79.chunk.js.map": "/task-calendar/static/js/787.391fed79.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c194fff4.css",
-    "static/js/main.66e01c0b.js"
+    "static/js/main.38f00d1c.js"
   ]
 }
